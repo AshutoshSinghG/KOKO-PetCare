@@ -52,7 +52,7 @@ MONGODB_URI=mongodb://localhost:27017/vet-chatbot
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-### Running
+### Running Locally
 
 ```bash
 # Terminal 1: Start backend
@@ -95,6 +95,79 @@ npm run build:sdk
 <script src="https://your-domain.com/chatbot.js"></script>
 ```
 
+## Deployment
+
+### Backend on Render
+
+1. **Create account** at [render.com](https://render.com)
+
+2. **Create Web Service** → Connect GitHub repo
+
+3. **Configure**:
+   | Setting | Value |
+   |---------|-------|
+   | Name | `vet-chatbot-api` |
+   | Root Directory | `backend` |
+   | Runtime | Node |
+   | Build Command | `npm install` |
+   | Start Command | `npm start` |
+
+4. **Environment Variables**:
+   ```
+   PORT=3001
+   NODE_ENV=production
+   MONGODB_URI=mongodb+srv://your-atlas-uri
+   GEMINI_API_KEY=your-key
+   FRONTEND_URL=https://your-vercel-app.vercel.app
+   ```
+
+5. **Deploy** → Get URL: `https://vet-chatbot-api.onrender.com`
+
+---
+
+### Frontend/SDK on Vercel
+
+1. **Create account** at [vercel.com](https://vercel.com)
+
+2. **Import repository** → Select repo
+
+3. **Configure**:
+   | Setting | Value |
+   |---------|-------|
+   | Framework | Vite |
+   | Root Directory | `frontend` |
+   | Build Command | `npm run build:sdk` |
+   | Output Directory | `dist/sdk` |
+
+4. **Environment Variable**:
+   ```
+   VITE_API_URL=https://vet-chatbot-api.onrender.com
+   ```
+
+5. **Deploy** → Get URL: `https://your-app.vercel.app/chatbot.js`
+
+---
+
+### MongoDB Atlas Setup
+
+1. Create free cluster at [mongodb.com/atlas](https://www.mongodb.com/atlas)
+2. Create database user
+3. Whitelist `0.0.0.0/0` for Render access
+4. Copy connection string → Add to Render env vars
+
+---
+
+### Final Integration
+
+```html
+<script>
+  window.VetChatbotConfig = {
+    apiUrl: "https://vet-chatbot-api.onrender.com"
+  };
+</script>
+<script src="https://your-app.vercel.app/chatbot.js"></script>
+```
+
 ## Architecture
 
 ```
@@ -111,7 +184,7 @@ KOKO/
 │
 ├── frontend/               # React chatbot widget
 │   ├── src/
-│   │   ├── components/     # ChatWidget components
+│   │   ├── components/     # ChatWidget, HomePage
 │   │   ├── sdk/            # SDK entry point
 │   │   └── styles/         # Widget CSS
 │   └── vite.config.js      # SDK bundling config
@@ -134,43 +207,42 @@ KOKO/
 
 | Decision | Rationale |
 |----------|-----------|
-| **Session-based conversations** | Stateless API design enables horizontal scaling |
-| **State machine for booking** | Clear flow, easy validation, resumable booking |
+| **Session-based conversations** | Stateless API enables horizontal scaling |
+| **State machine for booking** | Clear flow, easy validation, resumable |
 | **Vite library mode** | Optimized SDK bundle with tree-shaking |
-| **Inline SDK styles** | Single file bundle, no external CSS dependency |
-| **Gemini intent detection** | Leverages AI for natural language booking triggers |
+| **Inline SDK styles** | Single file, no external CSS dependency |
+| **Gemini intent detection** | Natural language booking triggers |
 
 ## Trade-offs & Assumptions
 
 ### Assumptions
-- Users have modern browsers (ES6+ support)
-- MongoDB is available (local or cloud)
-- Gemini API rate limits are sufficient
+- Modern browsers (ES6+ support)
+- MongoDB available (local or cloud)
+- Gemini API rate limits sufficient
 
 ### Trade-offs
-- **Inline styles in SDK**: Larger bundle but simpler integration
-- **Session in memory for booking state**: Simplicity over distributed state
-- **Basic phone validation**: Allows flexibility over strict validation
+- **Inline styles**: Larger bundle but simpler integration
+- **Session in memory**: Simplicity over distributed state
+- **Basic validation**: Flexibility over strict rules
 
 ## Future Improvements
 
-- [ ] WebSocket support for real-time updates
-- [ ] Admin dashboard for appointment management
-- [ ] Multi-language support (i18n)
-- [ ] Voice input capability
-- [ ] Rate limiting and API key authentication
-- [ ] Docker containerization
-- [ ] E2E tests with Playwright
-- [ ] Webhook notifications for new appointments
+- [ ] WebSocket for real-time updates
+- [ ] Admin dashboard
+- [ ] Multi-language support
+- [ ] Voice input
+- [ ] Rate limiting & API auth
+- [ ] Docker setup
+- [ ] E2E tests
 
 ## Environment Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `PORT` | Backend server port | 3001 |
-| `MONGODB_URI` | MongoDB connection string | localhost |
-| `GEMINI_API_KEY` | Google Gemini API key | Required |
-| `NODE_ENV` | Environment mode | development |
+| `PORT` | Backend port | 3001 |
+| `MONGODB_URI` | MongoDB connection | localhost |
+| `GEMINI_API_KEY` | Gemini API key | Required |
+| `NODE_ENV` | Environment | development |
 | `FRONTEND_URL` | Frontend URL for CORS | localhost:5173 |
 
 ## License
