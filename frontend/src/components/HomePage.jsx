@@ -216,11 +216,11 @@ const HomePage = () => {
                         <h4>Contact</h4>
                         <a href="#">📍 123 Pet Street</a>
                         <a href="#">📞 (555) 123-4567</a>
-                        <a href="#">✉️ hello@pawcare.com</a>
+                        <a href="#">✉️ hello@pawcareeee.com</a>
                     </div>
                 </div>
                 <div className="footer-bottom">
-                    <p>© 2024 PawCare Veterinary. Made with ❤️ for pets everywhere.</p>
+                    <p>© 2026 PawCare Veterinary. Made with ❤️ for pets everywhere.</p>
                 </div>
             </footer>
         </div>

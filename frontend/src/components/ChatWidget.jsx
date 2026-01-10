@@ -6,7 +6,7 @@ const getApiUrl = () => {
         return window.VetChatbotConfig.apiUrl;
     }
     // Default to same origin for development, or specified backend
-    return import.meta.env?.VITE_API_URL || 'http://localhost:3001';
+    return import.meta.env?.VITE_API_URL || 'https://koko-petcare.onrender.com';
 };
 
 // Custom hook for chat functionality
