@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Clinic - Demo Integration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        .hero {
+            padding: 100px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #4f46e5;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            background: white;
+            padding: 80px 40px;
+        }
+
+        .features h2 {
+            text-align: center;
+            color: #1f2937;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .feature-icon svg {
+            width: 35px;
+            height: 35px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .info-banner {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            color: #92400e;
+            padding: 16px 24px;
+            margin: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .info-banner code {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+            PawCare Veterinary
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Expert Care for Your Pets</h1>
+        <p>Providing compassionate veterinary services for your beloved companions. Chat with our AI assistant to get
+            answers or book an appointment!</p>
+        <button class="cta-btn" onclick="alert('Try the chatbot in the bottom-right corner!')">Get Started</button>
+    </section>
+
+    <div class="info-banner">
+        <strong>SDK Demo:</strong> This page demonstrates the Vet Chatbot SDK integration. Look for the chat button in
+        the <code>bottom-right corner</code>!
+    </div>
+
+    <section class="features">
+        <h2>Our Services</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" />
+                    </svg>
+                </div>
+                <h3>Wellness Exams</h3>
+                <p>Regular check-ups to keep your pets healthy and catch any issues early.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+                    </svg>
+                </div>
+                <h3>Vaccinations</h3>
+                <p>Complete vaccination programs to protect your pets from diseases.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.5 3A2.5 2.5 0 0015 5.5V6h-1.5A2.5 2.5 0 0011 3.5C11 2.12 12.12 1 13.5 1S16 2.12 16 3.5V4h1v-.5A2.5 2.5 0 0119.5 1C20.88 1 22 2.12 22 3.5S20.88 6 19.5 6H18v.5a2.5 2.5 0 01-5 0V6H9v.5A2.5 2.5 0 016.5 9C5.12 9 4 7.88 4 6.5S5.12 4 6.5 4H8v-.5A2.5 2.5 0 0110.5 1C11.88 1 13 2.12 13 3.5v.5h-.5A2.5 2.5 0 0010 6.5V7H9v-.5A2.5 2.5 0 006.5 4C5.12 4 4 5.12 4 6.5S5.12 9 6.5 9H7v.5A2.5 2.5 0 004.5 12C3.12 12 2 10.88 2 9.5S3.12 7 4.5 7H5v-.5A2.5 2.5 0 017.5 4z" />
+                    </svg>
+                </div>
+                <h3>Emergency Care</h3>
+                <p>24/7 emergency services for when your pet needs immediate attention.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 PawCare Veterinary. This is a demo page for the Vet Chatbot SDK.</p>
+    </footer>
+
+    <!-- 
+    ==========================================
+    VET CHATBOT SDK INTEGRATION EXAMPLE
+    ==========================================
+    
+    Option 1: Basic Integration (no configuration)
+    <script src="http://localhost:3001/chatbot.js"></script>
+    
+    Option 2: With Configuration (shown below)
+  -->
+
+    <!-- Optional: Pass context configuration -->
+    <script>
+        window.VetChatbotConfig = {
+            userId: "demo_user_123",
+            userName: "John Doe",
+            petName: "Buddy",
+            source: "demo-website",
+            apiUrl: "http://localhost:3001"
+        };
+    </script>
+
+    <!-- For development, include the SDK from local dev server -->
+    <script type="module">
+        // In production, this would be: <script src="https://your-domain.com/chatbot.js"></script>
+    // For development, we'll dynamically load the widget
+    import('./frontend/dist/sdk/chatbot.js').catch(() => {
+    // Fallback: If SDK not built, show instructions
+    console.log('SDK not built yet. Run "npm run build:sdk" in frontend directory.');
+
+    // For demo purposes, load from dev server
+    const devScript = document.createElement('script');
+    devScript.type = 'module';
+    devScript.textContent = `
+    import ChatWidget from 'http://localhost:5173/src/components/ChatWidget.jsx';
+    `;
+    });
+    </script>
+</body>
+
+</html>
