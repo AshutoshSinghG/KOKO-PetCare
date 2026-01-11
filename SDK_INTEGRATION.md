@@ -1,5 +1,9 @@
 # Veterinary Chatbot SDK - Integration Guide
 
+```html
+#Backend URL = https://koko-petcare.onrender.com
+```
+
 ## Quick Start
 
 Add the chatbot to any website with a single script tag:
