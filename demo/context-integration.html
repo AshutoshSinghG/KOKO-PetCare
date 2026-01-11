@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDK Integration Demo - With Context</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #7c3aed;
+        }
+
+        .info-box {
+            background: #fdf4ff;
+            border: 1px solid #a855f7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        code {
+            background: #1e293b;
+            color: #22d3ee;
+            padding: 15px;
+            border-radius: 8px;
+            display: block;
+            white-space: pre-wrap;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🐾 Veterinary Chatbot SDK - Context Integration</h1>
+
+    <div class="info-box">
+        <strong>This demo shows SDK integration with user context.</strong><br>
+        The chatbot receives information about the user and their pet!
+    </div>
+
+    <h2>Integration Code</h2>
+    <p>Pass context data before loading the SDK:</p>
+
+    <code><span class="highlight">&lt;!-- Step 1: Configure context (optional) --&gt;</span>
+&lt;script&gt;
+  window.VetChatbotConfig = {
+    userId: "user_123",
+    userName: "John Doe",
+    petName: "Buddy",
+    source: "marketing-website",
+    apiUrl: "http://localhost:3001"
+  };
+&lt;/script&gt;
+
+<span class="highlight">&lt;!-- Step 2: Load the SDK --&gt;</span>
+&lt;script src="http://localhost:3001/sdk/chatbot.js"&gt;&lt;/script&gt;</code>
+
+    <h2>Context Fields</h2>
+    <table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%;">
+        <tr style="background: #f1f5f9;">
+            <th>Field</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td><code style="display:inline;padding:2px 6px;">userId</code></td>
+            <td>Unique identifier for the user</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td><code style="display:inline;padding:2px 6px;">userName</code></td>
+            <td>Name of the pet owner</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td><code style="display:inline;padding:2px 6px;">petName</code></td>
+            <td>Name of the pet</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td><code style="display:inline;padding:2px 6px;">source</code></td>
+            <td>Where the user came from</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td><code style="display:inline;padding:2px 6px;">apiUrl</code></td>
+            <td>Backend API URL</td>
+            <td>Yes (for production)</td>
+        </tr>
+    </table>
+
+    <h2>Current Context</h2>
+    <div class="info-box" id="context-display">Loading...</div>
+
+    <!-- 
+    =====================================================
+    VETERINARY CHATBOT SDK - WITH CONTEXT CONFIGURATION
+    =====================================================
+    -->
+
+    <!-- Step 1: Configure context -->
+    <script>
+        window.VetChatbotConfig = {
+            userId: "demo_user_456",
+            userName: "Jane Smith",
+            petName: "Max",
+            source: "context-demo-page",
+            apiUrl: "http://localhost:3001"
+        };
+
+        // Display current config
+        document.getElementById('context-display').innerHTML =
+            '<pre>' + JSON.stringify(window.VetChatbotConfig, null, 2) + '</pre>';
+    </script>
+
+    <!-- Step 2: Load SDK -->
+    <script src="http://localhost:3001/sdk/chatbot.js"></script>
+</body>
+
+</html>
