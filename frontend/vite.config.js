@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
             'process.env.NODE_ENV': JSON.stringify(mode === 'development' ? 'development' : 'production')
         },
         build: isSDK ? {
-            // SDK build configuration - single file bundle
+            // SDK-only build - single file bundle
             lib: {
                 entry: resolve(__dirname, 'src/sdk/index.jsx'),
                 name: 'VetChatbot',
@@ -20,7 +20,6 @@ export default defineConfig(({ mode }) => {
             },
             rollupOptions: {
                 output: {
-                    // Inline all assets
                     inlineDynamicImports: true,
                     manualChunks: undefined
                 }
@@ -28,8 +27,13 @@ export default defineConfig(({ mode }) => {
             cssCodeSplit: false,
             outDir: 'dist/sdk'
         } : {
-            // Regular build
-            outDir: 'dist'
+            // Regular build - includes homepage + SDK in public folder
+            outDir: 'dist',
+            rollupOptions: {
+                input: {
+                    main: resolve(__dirname, 'index.html')
+                }
+            }
         },
         server: {
             port: 5173,

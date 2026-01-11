@@ -136,15 +136,17 @@ npm run build:sdk
    |---------|-------|
    | Framework | Vite |
    | Root Directory | `frontend` |
-   | Build Command | `npm run build:sdk` |
-   | Output Directory | `dist/sdk` |
+   | Build Command | `npm run build:all` |
+   | Output Directory | `dist` |
 
 4. **Environment Variable**:
    ```
    VITE_API_URL=https://vet-chatbot-api.onrender.com
    ```
 
-5. **Deploy** → Get URL: `https://your-app.vercel.app/chatbot.js`
+5. **Deploy** → You get:
+   - Homepage: `https://your-app.vercel.app`
+   - SDK: `https://your-app.vercel.app/chatbot.js`
 
 ---
 
